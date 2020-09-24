@@ -24,7 +24,7 @@ import { ContactComponent } from './contact/contact.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { LeaderComponent } from './leader/leader.component';
 import { LoginComponent } from './login/login.component';
-
+import {MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   imports: [
@@ -36,7 +36,8 @@ import { LoginComponent } from './login/login.component';
     MatListModule,
     MatGridListModule,
     MatCardModule,
-    MatButtonModule
+    MatButtonModule,
+    MatDialogModule
   ],
   declarations: [
     AppComponent,
@@ -50,6 +51,9 @@ import { LoginComponent } from './login/login.component';
     PageNotFoundComponent,
     LeaderComponent,
     LoginComponent, 
+  ],
+  entryComponents: [
+    LoginComponent
   ],
   providers: [DishService, PromotionService, LeaderService],
   bootstrap: [AppComponent]
