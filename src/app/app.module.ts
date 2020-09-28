@@ -27,9 +27,11 @@ import { LoginComponent } from './login/login.component';
 import {MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { FormsModule } from '@angular/forms'; 
-
+import { ReactiveFormsModule } from '@angular/forms'
 @NgModule({
   imports: [
     BrowserModule,
@@ -43,9 +45,12 @@ import { FormsModule } from '@angular/forms';
     MatCardModule,
     MatButtonModule,
     MatDialogModule,
+    MatSelectModule,
     MatFormFieldModule,
+    MatSlideToggleModule,
     MatInputModule,
     MatCheckboxModule,
+    ReactiveFormsModule
   ],
   declarations: [
     AppComponent,
