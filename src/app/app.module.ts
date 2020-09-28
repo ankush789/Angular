@@ -25,11 +25,16 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { LeaderComponent } from './leader/leader.component';
 import { LoginComponent } from './login/login.component';
 import {MatDialogModule } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { FormsModule } from '@angular/forms'; 
 
 @NgModule({
   imports: [
     BrowserModule,
     AppRoutingModule,
+    FormsModule,
     BrowserAnimationsModule,
     MatToolbarModule,
     FlexLayoutModule,
@@ -37,7 +42,10 @@ import {MatDialogModule } from '@angular/material/dialog';
     MatGridListModule,
     MatCardModule,
     MatButtonModule,
-    MatDialogModule
+    MatDialogModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatCheckboxModule,
   ],
   declarations: [
     AppComponent,
@@ -50,12 +58,10 @@ import {MatDialogModule } from '@angular/material/dialog';
     ContactComponent,
     PageNotFoundComponent,
     LeaderComponent,
-    LoginComponent, 
+    LoginComponent,
   ],
-  entryComponents: [
-    LoginComponent
-  ],
+  entryComponents: [LoginComponent],
   providers: [DishService, PromotionService, LeaderService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
