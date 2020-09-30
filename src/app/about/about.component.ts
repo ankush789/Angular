@@ -7,10 +7,12 @@ import { LeaderService } from '../services/leader.service';
   styleUrls: ['./about.component.scss']
 })
 export class AboutComponent implements OnInit {
-
-  constructor() { }
+  leaders : Leader[];
+  constructor(public leaderService : LeaderService) { }
 
   ngOnInit(): void {
+    this.leaderService.getLeaders().subscribe(leader => { this.leaders = leader} );
+
   }
 
 }
