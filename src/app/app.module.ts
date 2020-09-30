@@ -12,6 +12,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
+import { MatSliderModule } from '@angular/material/slider';
 import { DishdetailComponent } from './dishdetail/dishdetail.component';
 import { DishService } from './services/dish.service';
 import { PromotionService } from "./services/promotion.service";
@@ -43,6 +44,7 @@ import { ReactiveFormsModule } from '@angular/forms'
     FlexLayoutModule,
     MatListModule,
     MatGridListModule,
+    MatSliderModule,
     MatCardModule,
     MatProgressSpinnerModule,
     MatButtonModule,

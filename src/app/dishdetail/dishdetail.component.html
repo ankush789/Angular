@@ -29,9 +29,48 @@
                <p matLine>-- {{comments.author}} {{comments.date | date}}</p>
            </mat-list-item>
        </mat-list>
+
+
+<!-- TEMPLATE TO SHOW LIVE DETAILS ENTERED IN THE COMMENT FORM -->
+            <mat-list *ngIf="commentForm.valid">
+                <mat-list-item>
+                    <p matLine>{{ commentForm.value.comments }}</p>
+                    <p matLine>{{ commentForm.value.rating }} Star</p>
+                    <p matLine> --{{ commentForm.value.name }} {{ date | date }}</p>
+                </mat-list-item>
+            </mat-list>
+
+       <!-- *************************************************FORM TO ADD COMMENT****************************************************** -->
+       <form novalidate [formGroup]="commentForm"  #commentform = "ngForm" class="form-width" (ngSubmit)="onSubmit()">
+           <p>
+                <mat-form-field>
+                    <input matInput type="text" placeholder="Name" formControlName="name" required>
+                </mat-form-field>
+                <mat-error *ngIf="formErrors.name">
+                    {{formErrors.name}}
+                </mat-error>
+           </p>
+           <p>
+                <mat-slider thumbLabel tickInterval="1" min="1" value="5" max="5" formControlName="rating"></mat-slider>
+           </p>
+           <p>
+                <mat-form-field class="example-full-width">
+                    <textarea matInput placeholder="Your Comment" formControlName="comments" required></textarea>
+                </mat-form-field>
+                <mat-error *ngIf="formErrors.comments">
+                    {{formErrors.comments}}
+                </mat-error>
+           </p>
+            <button type="submit" mat-button class="background-primary text-floral-white"
+                [disabled]="!commentForm.valid">Submit</button>
+       </form>
     </div>
 </div>
-    <div [hidden]="dish">
-        <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
-        <h4>Loading . . . Please Wait</h4>
-    </div>
+
+<div [hidden]="dish">
+    <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+    <h4>Loading . . . Please Wait</h4>
+</div>
+
+
+   
