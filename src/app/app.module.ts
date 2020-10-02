@@ -16,6 +16,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSliderModule } from '@angular/material/slider';
 import { DishdetailComponent } from './dishdetail/dishdetail.component';
 import { DishService } from './services/dish.service';
+import { ProcessHttpMsgService } from './services/process-http-msg.service'
 import { PromotionService } from "./services/promotion.service";
 import { LeaderService } from './services/leader.service';
 import { HeaderComponent } from './header/header.component';
@@ -72,7 +73,7 @@ import { ReactiveFormsModule } from '@angular/forms'
     LoginComponent,
   ],
   entryComponents: [LoginComponent],
-  providers: [DishService, PromotionService, LeaderService,
+  providers: [DishService, PromotionService, LeaderService, ProcessHttpMsgService,
   {provide: 'BaseURL', useValue: baseURL}
   ],
   bootstrap: [AppComponent],

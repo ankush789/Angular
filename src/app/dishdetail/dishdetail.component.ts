@@ -23,6 +23,7 @@ export class DishdetailComponent implements OnInit {
   date: string;
   authorName: string;
   comments: string;
+  errMess: String;
    
   @ViewChild('commentform') commentFormDirective;
   formErrors = {
@@ -48,7 +49,7 @@ export class DishdetailComponent implements OnInit {
 
   ngOnInit() {
     //Using observable to fetch the clicked dish from the getDish() method in dish Service by passing id obtained using activatedRoute. 
-    this.dishservice.getDishIds().subscribe(dishIds => this.dishIds = dishIds);
+    this.dishservice.getDishIds().subscribe(dishIds => this.dishIds = dishIds, errmess => this.errMess = <any>errmess);
     this.route.params.pipe(switchMap((params: Params) => this.dishservice.getDish(params['id'])))
       .subscribe(dish => { this.dish = dish; this.setPrevNext(dish.id); });
 
