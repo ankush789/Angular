@@ -4,7 +4,7 @@
             <mat-card-header>
                 <mat-card-title id="bold">{{dish.name | uppercase}}</mat-card-title>
             </mat-card-header>
-            <img src={{dish.image}} alt={{dish.name}} height="500px">
+            <img src="{{ baseURL + dish.image}}" alt={{dish.name}} height="500px">
             <mat-card-header>
                 <p>{{dish.description}}</p>
             </mat-card-header>
@@ -51,7 +51,7 @@
                 </mat-error>
            </p>
            <p>
-                <mat-slider thumbLabel tickInterval="1" min="1" value="5" max="5" formControlName="rating"></mat-slider>
+                <mat-slider thumbLabel tickInterval="1" min="1"  max="5" formControlName="rating" ></mat-slider>
            </p>
            <p>
                 <mat-form-field class="example-full-width">

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input , ViewChild } from '@angular/core';
+import { Component, OnInit, Input , Inject, ViewChild } from '@angular/core';
 import { Dish } from '../shared/dish';
 import { DishService } from '../services/dish.service';
 import { switchMap } from 'rxjs/operators';
@@ -24,7 +24,7 @@ export class DishdetailComponent implements OnInit {
   authorName: string;
   comments: string;
    
-  @ViewChild('commentform') feedbackFormDirective;
+  @ViewChild('commentform') commentFormDirective;
   formErrors = {
    'name': '',
     'comments': ''
@@ -44,7 +44,7 @@ export class DishdetailComponent implements OnInit {
   };
 
   constructor(private dishservice: DishService, private route: ActivatedRoute, private location: Location,
-    public fb: FormBuilder) { this.createCommentForm(); }
+    public fb: FormBuilder, @Inject('BaseURL') private baseURL) { this.createCommentForm(); }
 
   ngOnInit() {
     //Using observable to fetch the clicked dish from the getDish() method in dish Service by passing id obtained using activatedRoute. 
@@ -61,7 +61,7 @@ export class DishdetailComponent implements OnInit {
     this.commentForm = this.fb.group({
       name: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(30)]],
       comments: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(200)]],
-      rating: ['']
+      rating: ["5"]
     });
 
     this.commentForm.valueChanges.subscribe(data => this.onValueChanged(data));
@@ -116,9 +116,10 @@ export class DishdetailComponent implements OnInit {
 
     this.commentForm.reset({
       name: '',
-      comments: ''
+      comments: '',
+      rating: 5
     });
-    this.feedbackFormDirective.resetForm();
+    this.commentFormDirective.resetForm();
   }
 
 }
