@@ -6,11 +6,32 @@ import { Params, ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { FormBuilder, FormGroup, FormGroupDirective, Validators } from '@angular/forms';
 import { Comment } from '../shared/comment';
+import { trigger, state, style, animate, transition } from '@angular/animations';
+import { setClassMetadata } from '@angular/core/src/r3_symbols';
 
 @Component({
   selector: 'app-dishdetail',
   templateUrl: './dishdetail.component.html',
   styleUrls: ['./dishdetail.component.scss'],
+  animations: [
+    trigger('visibility', [
+      state(
+        'shown',
+        style({
+          transform: 'scale(1.0)',
+          opacity: 1,
+        })
+      ),
+      state(
+        'hidden',
+        style({
+          transform: 'scale(0.5)',
+          opacity: 0,
+        })
+      ),
+      transition('* => *', animate('0.5s ease-in-out')),
+    ]),
+  ],
 })
 export class DishdetailComponent implements OnInit {
   dish: Dish;
@@ -24,6 +45,7 @@ export class DishdetailComponent implements OnInit {
   comments: string;
   errMess: String;
   dishcopy: Dish;
+  visibility = 'shown';
 
   @ViewChild('commentform') commentFormDirective;
   formErrors = {
@@ -60,11 +82,18 @@ export class DishdetailComponent implements OnInit {
       (dishIds) => (this.dishIds = dishIds),
       (errmess) => (this.errMess = <any>errmess)
     );
-    this.route.params.pipe( switchMap((params: Params) => this.dishservice.getDish(params['id'])))
+    this.route.params
+      .pipe(
+        switchMap((params: Params) => {
+          this.visibility = 'hidden';
+          return this.dishservice.getDish(params['id']);
+        })
+      )
       .subscribe((dish) => {
         this.dish = dish;
         this.dishcopy = dish;
         this.setPrevNext(dish.id);
+        this.visibility = 'shown';
       });
 
     // const id = this.route.snapshot.params['id'];
@@ -137,13 +166,12 @@ export class DishdetailComponent implements OnInit {
   onSubmit() {
     //ASSIGNING VALUES OF COMMENT FORM TO THE JSON OBJECT COMMENT WHICH IS TO BE PUSHED
     this.comment = this.commentForm.value;
-   
+
     this.comment.date = new Date().toISOString();
 
     //Pushing new Json object into comments array of dishes
     this.dishcopy.comments.push(this.comment);
 
-    
     this.dishservice.putDish(this.dishcopy).subscribe(
       (dish) => {
         this.dish = dish;
