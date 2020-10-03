@@ -35,17 +35,17 @@ export class DishdetailComponent implements OnInit {
 
   @ViewChild('commentform') commentFormDirective;
   formErrors = {
-    name: '',
-    comments: '',
+    author: '',
+    comment: '',
   };
 
   validationMessages = {
-    name: {
+    author: {
       required: 'Name is required.',
       minlength: 'Name must be at least 2 characters long.',
       maxlength: 'Name cannot be more than 30 characters long.',
     },
-    comments: {
+    comment: {
       required: 'Comment is required.',
       minlength: 'Comment must be at least 10 characters long.',
       maxlength: 'Comment cannot be more than 200 characters long.',
@@ -89,7 +89,7 @@ export class DishdetailComponent implements OnInit {
   //Comment Form Submission function
   createCommentForm() {
     this.commentForm = this.fb.group({
-      name: [
+      author: [
         '',
         [
           Validators.required,
@@ -154,7 +154,7 @@ export class DishdetailComponent implements OnInit {
     this.comment = this.commentForm.value;
 
     this.comment.date = new Date().toISOString();
-
+    console.log(this.comment);
     //Pushing new Json object into comments array of dishes
     this.dishcopy.comments.push(this.comment);
 

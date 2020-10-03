@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Dish } from '../shared/dish';
+import { Feedback } from '../shared/feedback';
 import { of, Observable  } from 'rxjs';
 import { delay } from 'rxjs/operators';
 import { map, catchError } from 'rxjs/operators';
@@ -16,6 +17,7 @@ export class DishService {
     private processHTTPMsgService: ProcessHttpMsgService
   ) {}
 
+  feedbackid: number = 0;
   getDishes(): Observable<Dish[]> {
     return this.http
       .get<Dish[]>(baseURL + 'dishes')
@@ -51,5 +53,5 @@ export class DishService {
       .put<Dish>(baseURL + 'dishes/' + dish.id, dish, httpOptions)
       .pipe(catchError(this.processHTTPMsgService.handleError));
   }
-}
 
+}

@@ -38,7 +38,7 @@ export class HomeComponent implements OnInit {
       (promotion) => (this.promotion = promotion),
       (dishErrmess) => (this.dishErrMess = <any>dishErrmess)
     );
-    this.leaderservice.getFeaturedDish().subscribe(
+    this.leaderservice.getFeaturedLeader().subscribe(
       (leader) => (this.leader = leader),
       (dishErrmess) => (this.dishErrMess = <any>dishErrmess)
     );

@@ -22,12 +22,12 @@ export class LeaderService {
      .pipe(catchError(this.processHTTPMsgService.handleError));
   }
 
-  getDish(id: string): Observable<Leader> {
+  getLeader(id: string): Observable<Leader> {
     return this.http.get<Leader>(baseURL + 'leadership/' + id)
       .pipe(catchError(this.processHTTPMsgService.handleError));
   }
 
-  getFeaturedDish(): Observable<Leader> {
+  getFeaturedLeader(): Observable<Leader> {
     return this.http.get<Leader[]>(baseURL + 'Leadership?featured=true').pipe(map(leadership => leadership[0]))
       .pipe(catchError(this.processHTTPMsgService.handleError));
 
