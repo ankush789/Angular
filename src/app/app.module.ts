@@ -35,7 +35,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { FormsModule } from '@angular/forms'; 
-import { ReactiveFormsModule } from '@angular/forms'
+import { ReactiveFormsModule } from '@angular/forms';
+import { HighlightDirective } from './directives/highlight.directive'
 @NgModule({
   imports: [
     BrowserModule,
@@ -71,6 +72,7 @@ import { ReactiveFormsModule } from '@angular/forms'
     PageNotFoundComponent,
     LeaderComponent,
     LoginComponent,
+    HighlightDirective,
   ],
   entryComponents: [LoginComponent],
   providers: [DishService, PromotionService, LeaderService, ProcessHttpMsgService,
